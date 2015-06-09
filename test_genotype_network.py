@@ -16,4 +16,5 @@ def test_generate_genotype_network():
 	Checks number of edges
 	"""
 	assert len(GN.seq) == len(GN.G.nodes())
-	assert len(GN.G.edges()) == 1
+	assert len(GN.G.edges()) == 1 #This will change based on dataset
+

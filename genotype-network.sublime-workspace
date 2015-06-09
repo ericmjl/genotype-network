@@ -3,6 +3,14 @@
 	{
 		"selected_items":
 		[
+			[
+				"seqe",
+				"sequences"
+			],
+			[
+				"mas",
+				"masterList"
+			]
 		]
 	},
 	"buffers":
@@ -11,15 +19,34 @@
 			"file": "genotype_network.py",
 			"settings":
 			{
-				"buffer_size": 933,
+				"buffer_size": 1275,
 				"line_ending": "Windows"
 			}
 		},
 		{
+			"contents": "import genotype_network as gn\n\nGN = gn.GenotypeNetwork()\nGN.read_sequences('Test\\Demo_052715.fasta')\nGN.generate_genotype_network()\n\ndef test_read_sequences_works_correctly():\n	\"\"\"\n	Checks that GN.read_sequences reads in correct number of sequences.\n	\"\"\"\n	assert len(GN.seq) == 3\n\ndef test_generate_genotype_network():\n	\"\"\"\n	Checks that the number of nodes equals the number of sequences\n	Checks number of edges\n	\"\"\"\n	assert len(GN.seq) == len(GN.G.nodes())\n	assert len(GN.G.edges()) == 1 #This will change based on dataset\n\n",
 			"file": "test_genotype_network.py",
+			"file_size": 508,
+			"file_write_time": 130779237605986850,
 			"settings":
 			{
-				"buffer_size": 248,
+				"buffer_size": 525,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "list_compiler.py",
+			"settings":
+			{
+				"buffer_size": 955,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "test_list_compiler.py",
+			"settings":
+			{
+				"buffer_size": 126,
 				"line_ending": "Windows"
 			}
 		}
@@ -60,7 +87,7 @@
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 39.0
 	},
 	"find_in_files":
 	{
@@ -74,6 +101,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"G",
 			"ClassName",
 			"DTICIGYHANNSTDTVDTVLEKNVTVTHSVNLLENSHNGKLCLLKGIAPLQLGNCSVAGWILGNPECELLISKESWSYIVETPNPENGTCYPGYFADYEELREQLSSVSSFERFEIFPKESSWPNHTVTGVSASCSHNGKSSFYRNLLWLTGKNGLYPNLSKSYVNNKEKEVLVLWGVHHPPNIGDQRALYHTENAYVSVVSSHYSRRFTPEIAKRPKVRDQEGRINYYWTLLEPGDTIIFEANGNLIAPWYAFALSRGFGSGIITSNAPMDECDAKCQTPQGAINSSLPFQNVHPVTIGECPKYVRSAKLRMVTGLRNIPSIQSRGLF\n",
 			"LWGVHHPPNIGDQRALYHTENAYVSVVSSHYSRRFTPEIAKRPKVRDQEGRINYYWTLLEPGDTIIFEANGNLIAPWYAFALSRGFGSGIITSNAPMDECDAKCQTPQGAINSSLPFQNVHPVTIGECPKYVRSAKLRMVTGLRNIPSIQSRGLF",
@@ -98,7 +126,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -107,15 +135,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 933,
+						"buffer_size": 1275,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								933,
-								933
+								249,
+								249
 							]
 						],
 						"settings":
@@ -123,10 +151,10 @@
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 151.0,
+						"translation.y": 97.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -135,15 +163,71 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 248,
+						"buffer_size": 525,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								248,
-								248
+								131,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": -0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "list_compiler.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 955,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								775,
+								775
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": -0.0,
+						"translation.y": 443.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "test_list_compiler.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 126,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								126,
+								126
 							]
 						],
 						"settings":
