@@ -1,5 +1,7 @@
 from Bio import SeqIO
 from itertools import combinations 
+import multiprocessing
+from collections import defaultdict
 
 class ListCompiler(object):
 	"""
@@ -7,7 +9,7 @@ class ListCompiler(object):
 	"""
 	def __init__(self):
 		super(ListCompiler, self).__init__()
-		self.masterSeq = dict()
+		self.masterSeq = defaultdict(list)
 		self.sequences = dict()
 
 	def read_sequences(self, filename):
@@ -36,13 +38,29 @@ class ListCompiler(object):
 
 		Parameters
 		-----
+		None
 		-----
 
 		Returns
 		-----
-		masterSeq
+		None
 		-----
 		"""
-		for seq1, seq2 in combinations(self.sequences[seq, 2):
-			self.masterSeq[seq1] = seq2
-		return masterSeq
+		for seq1, seq2 in combinations(self.sequences, 2):
+			self.masterSeq[seq1].append[seq2]
+
+	def divide_list(self):
+		"""
+		Divides the master list based on the number of processors (cores)
+		Parameters
+		-----
+		processor: Number of CPUs
+		-----
+
+		Returns
+		-----
+		None
+		-----
+		"""
+		m = multiprocessing.cpu_count()
+		
