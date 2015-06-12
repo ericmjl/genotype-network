@@ -1,7 +1,6 @@
 from Bio import SeqIO
 from itertools import combinations 
-import multiprocessing
-from collections import defaultdict
+import pickle as pkl
 
 class ListCompiler(object):
 	"""
@@ -32,9 +31,9 @@ class ListCompiler(object):
 
 	def compile_list(self):
 		"""
-		Generates a master list of all the comparisons you need to make
-		Dict keys: One sequence object
-		Dict value: Other sequence object
+		Generates a master list of tuples for all comparisons e.g. [(1,2),(1,3)]
+		List Index: Normal index
+	    List Value: Tuple of the 2 sequences
 
 		Parameters
 		-----
@@ -47,7 +46,7 @@ class ListCompiler(object):
 		-----
 		"""
 		for seq1, seq2 in combinations(self.sequences, 2):
-			self.masterSeq[seq1].append[seq2]
+			self.masterSeq.append(seq1, seq2)
 
 	def divide_list(self):
 		"""
@@ -62,5 +61,11 @@ class ListCompiler(object):
 		None
 		-----
 		"""
-		m = multiprocessing.cpu_count()
-		
+		m_CPUs = 32
+		i = 0
+
+		block_size = math.ceil(len(self.masterSeq)/m_CPUs)
+		current_CPU = 0
+		while(i + block_size) < len(self.masterSeq):
+			with open("pickled_lists/CPU{0}_comparisons.pkllist".format(current_CPU),'w') as f:
+				pkl.dumps(self.masterSeq[i : i + block_size], f)
