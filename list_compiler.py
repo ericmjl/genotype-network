@@ -48,7 +48,7 @@ class ListCompiler(object):
 		-----
 		"""
 		for seq1, seq2 in combinations(self.sequences, 2):
-			self.master_seq.append(seq1, seq2)
+			self.master_seq.append((seq1, seq2))
 
 	def divide_list(self):
 		"""
