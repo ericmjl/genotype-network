@@ -15,53 +15,47 @@ class ListCompiler(object):
 
 	def read_sequences(self, filename):
 		"""
-		Reads in a sequence of type FASTA, assigns it to self.sequences as a dictionary
-		Dictionary Keys: Accession number
-		Dictionary Values: SeqRecords
+		Reads in a sequence of type FASTA, assigns it to self.sequences as a set of biopython Seq objects.
 
-		Parameters
-		-----
-		filename: (str) FASTA file path
-		-----
+		Parameters:
+		===========
+		- filename: 	(str) FASTA file path
 
-		Returns
-		-----
+		Returns:
+		========
 		None
-		-----
 		"""
 		self.sequences = set([s.seq for s in SeqIO.parse(filename, 'fasta')])
 
 	def compile_list(self):
 		"""
 		Generates a master list of tuples for all comparisons e.g. [(1,2),(1,3)]
-		List Index: Normal index
-	    List Value: Tuple of the 2 sequences
+		- List Index: Normal index
+	    - List Value: Tuple of the 2 sequences
 
-		Parameters
-		-----
+		Parameters:
+		===========
 		None
-		-----
 
-		Returns
-		-----
+		Returns:
+		========
 		None
-		-----
 		"""
 		for seq1, seq2 in combinations(self.sequences, 2):
 			self.master_seq.append((seq1, seq2))
 
 	def divide_list(self):
 		"""
-		Divides the master list based on the number of processors (cores)
-		Parameters
-		-----
-		processor: Number of CPUs
-		-----
-
-		Returns
-		-----
+		Writes to disk the split lists as a series of pickled lists.
+		
+		Parameters:
+		===========
 		None
-		-----
+
+		Returns:
+		========
+		None
+
 		"""
 		i = 0
 
