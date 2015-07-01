@@ -20,7 +20,7 @@ class GraphCombiner(object):
 		"""
 		Reads the present in the directory into the list of graphs.
 		"""
-		for f in os.listdir(directory):
+		for f in os.listdir(self.directory):
 			if f.split('.')[-1] == 'pkl':
 				subg = nx.read_gpickle(f)
 				self.subgraphs.append(subg)
