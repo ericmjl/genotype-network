@@ -16,8 +16,7 @@ before_install:
 
 # install packages
 install:
-  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION numpy scipy matplotlib networkx biopython
-  - source activate test-environment
+  - conda install numpy scipy matplotlib networkx biopython
 
 # command to run tests
 script: py.test
