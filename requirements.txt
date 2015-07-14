@@ -4,3 +4,4 @@ python-Levenshtein
 scipy
 numpy
 matplotlib
+pytest
