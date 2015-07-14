@@ -50,8 +50,13 @@ class GenotypeNetwork(object):
             self.G.add_node(seq)
 
         for seq1, seq2 in combinations(self.seq, 2):
-            if distance.levenshtein(self.seq[seq1], self.seq[seq2]) == 1:
-                self.G.add_edge(seq1, seq2)
-                print(seq1, seq2)
+            try: # try first with Levenshtein
+                if distance(self.seq[seq1], self.seq[seq2]) == 1:
+                    self.G.add_edge(seq1, seq2)
+            except:
+                if distance.levenshtein(self.seq[seq1], self.seq[seq2]) == 1:
+                    self.G.add_edge(seq1, seq2)
+                    # print(seq1, seq2)
+
 
         nx.draw_networkx(self.G, with_labels=True)
