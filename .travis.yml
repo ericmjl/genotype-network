@@ -6,15 +6,13 @@ python:
 
 # command to install dependencies
 # setup anaconda
-before_install:
+install:
   - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
   - chmod +x miniconda.sh
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
   - conda update -y conda
-
 # install packages
-install:
   - conda install -y numpy scipy matplotlib networkx biopython
   - echo $PATH
   - which python
