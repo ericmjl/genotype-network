@@ -7,23 +7,31 @@ python:
 # command to install dependencies
 # setup anaconda
 install:
-  - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
-  - chmod +x miniconda.sh
+  - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+      wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh;
+    else
+      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+    fi
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
-  - conda update -y conda
-  # - conda create -n test
-  # - source activate test  
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  # Useful for debugging any issues with conda
+  - conda info -a
   # install packages
-  - conda install -y numpy scipy matplotlib networkx biopython
+  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION numpy scipy matplotlib networkx python-Levenshtein
+  - source activate test-environment
+  - python setup.py install
+
   # for debugging purposes:
-  - echo $PATH
-  - echo $PYTHONPATH
-  - which python
-  - cd ~
-  - cd miniconda
-  - cd bin
-  - ls
+  # - echo $PATH
+  # - echo $PYTHONPATH
+  # - which python
+  # - cd ~
+  # - cd miniconda
+  # - cd bin
+  # - ls
 
 
 # command to run tests
