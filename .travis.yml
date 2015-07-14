@@ -17,5 +17,7 @@ before_install:
 install:
   - conda install -y numpy scipy matplotlib networkx biopython
 
+  - echo $PATH
+
 # command to run tests
 script: py.test
