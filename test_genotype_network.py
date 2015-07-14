@@ -1,7 +1,7 @@
 import genotype_network as gn
 
 GN = gn.GenotypeNetwork()
-GN.read_sequences('Test\Demo_052715.fasta')
+GN.read_sequences('Test/Demo_052715.fasta')
 GN.generate_genotype_network()
 
 def test_read_sequences_works_correctly():
