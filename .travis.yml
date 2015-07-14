@@ -19,10 +19,8 @@ install:
   - echo $PATH
   - echo $PYTHONPATH
   - which python
-  - cd ..
-  - cd ..
-  - cd ..
-  - cd /home/travis/miniconda/bin/python
+  - cd ~
+  - cd /miniconda/bin/python
   - ls
 
 
