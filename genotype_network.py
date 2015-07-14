@@ -1,55 +1,54 @@
 from Bio import SeqIO
 import networkx as nx
 import distance
-from itertools import combinations 
+from itertools import combinations
+
 
 class GenotypeNetwork(object):
-	"""docstring for GenotypeNetwork"""
-	def __init__(self):
-		super(GenotypeNetwork, self).__init__()
-		self.G = nx.Graph()
-		self.seq = dict()
-		
-	def read_sequences(self, filename):
-		"""
-		Reads in a sequence of type FASTA, assigns it to self.seq as a dictionary
-		Dictionary Keys: Accession number
-		Dictionary Values: SeqRecords
+    """docstring for GenotypeNetwork"""
+    def __init__(self):
+        super(GenotypeNetwork, self).__init__()
+        self.G = nx.Graph()
+        self.seq = dict()
 
-		Parameters
-		-----
-		filename: (str) FASTA file path
-		-----
+    def read_sequences(self, filename):
+        """
+        Reads in a sequence of type FASTA, assigns it to self.seq as a
+        dictionary
+        - Dictionary Keys: Accession number
+        - Dictionary Values: SeqRecords
 
-		Returns
-		-----
-		None
-		-----
-		"""
-		self.seq = SeqIO.to_dict(SeqIO.parse(filename, 'fasta'))
+        Parameters:
+        ===========
+        - filename: (str) FASTA file path
 
-	def generate_genotype_network(self):
-		"""
-		Generates a network of genotypes that are 1 AA apart based on information from the dictionary 
-		Graph nodes: Individual HA sequences 
-		Graph edges: Indicate that two sequences are 1 AA apart
+        Returns:
+        ========
+        None
+        """
+        self.seq = SeqIO.to_dict(SeqIO.parse(filename, 'fasta'))
 
-		Parameters
-		-----
-		None
-		-----
+    def generate_genotype_network(self):
+        """
+        Generates a network of genotypes that are 1 AA apart based on
+        information from the dictionary.
+        - Graph nodes: Individual HA sequences
+        - Graph edges: Indicate that two sequences are 1 AA apart
 
-		Returns
-		-----
-		A genotype network from the inputted FASTA file
-		-----
-		"""
-		for seq in self.seq: #Adds a node for each sequence
-			self.G.add_node(seq)
+        Parameters:
+        ===========
+        None
 
-		for seq1, seq2 in combinations(self.seq, 2):
-			if distance.levenshtein(self.seq[seq1], self.seq[seq2]) == 1:
-				self.G.add_edge(seq1, seq2)
-				print(seq1, seq2)
+        Returns:
+        ========
+        None
+        """
+        for seq in self.seq:  # Adds a node for each sequence
+            self.G.add_node(seq)
 
-		nx.draw_networkx(self.G, with_labels = True)
+        for seq1, seq2 in combinations(self.seq, 2):
+            if distance.levenshtein(self.seq[seq1], self.seq[seq2]) == 1:
+                self.G.add_edge(seq1, seq2)
+                print(seq1, seq2)
+
+        nx.draw_networkx(self.G, with_labels=True)
