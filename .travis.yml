@@ -16,8 +16,6 @@ before_install:
 # install packages
 install:
   - conda install --yes python=$TRAVIS_PYTHON_VERSION numpy scipy matplotlib networkx biopython
-  - python
-  - import Bio
 
 # command to run tests
 script: py.test
