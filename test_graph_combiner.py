@@ -2,7 +2,7 @@ import graph_combiner as gc
 import os 
 import pickle as pkl
 
-directory = ('\Test')
+directory = ('Test')
 GC = gc.GraphCombiner(directory)
 GC.read_graphs()
 GC.combine_graphs()
@@ -28,4 +28,4 @@ def test_write_combined_graph():
 	"""
 	Checks that GC.write_combined_graph can write correct length graph to disk
 	"""
-	assert len('Test\combined_graph.pkl') == 3
+	assert len('Test/combined_graph.pkl') == 3
