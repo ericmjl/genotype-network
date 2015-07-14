@@ -20,8 +20,7 @@ install:
   - echo $PYTHONPATH
   - which python
   - cd ~
-  - ls
-  - cd /miniconda/bin/python
+  - cd miniconda/bin/python
   - ls
 
 
