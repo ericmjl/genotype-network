@@ -17,6 +17,7 @@ install:
 # install packages
   - conda install -y numpy scipy matplotlib networkx biopython
   - echo $PATH
+  - echo $PYTHONPATH
   - which python
 
 
