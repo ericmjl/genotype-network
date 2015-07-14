@@ -2,3 +2,5 @@ networkx
 biopython
 python-Levenshtein
 scipy
+numpy
+matplotlib
