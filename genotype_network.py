@@ -1,6 +1,9 @@
 from Bio import SeqIO
 import networkx as nx
-import distance
+try:
+    from Levenshtein import distance
+except:
+    import distance
 from itertools import combinations
 
 
