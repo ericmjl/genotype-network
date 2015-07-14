@@ -19,7 +19,11 @@ install:
   - echo $PATH
   - echo $PYTHONPATH
   - which python
-  - ls /home/travis/miniconda/bin/python
+  - cd ..
+  - cd ..
+  - cd ..
+  - cd /home/travis/miniconda/bin/python
+  - ls
 
 
 # command to run tests
