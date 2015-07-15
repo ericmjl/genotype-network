@@ -43,11 +43,11 @@ class GenotypeNetwork(object):
         ========
         None
         """
-        for seq in self.sequences:  # Adds a node for each sequence
+        for seq in self.sequences.keys():  # Adds a node for each sequence
             self.G.add_node(seq)
 
-        for seq1, seq2 in combinations(self.sequences, 2):
-            if distance(str(self.sequences[seq1]), str(self.sequences[seq2])) == 1:
+        for seq1, seq2 in combinations(self.sequences.keys(), 2):
+            if distance(str(self.sequences[seq1].seq), str(self.sequences[seq2].seq)) == 1:
                 self.G.add_edge(seq1, seq2)
 
 
