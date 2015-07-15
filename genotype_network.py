@@ -47,7 +47,7 @@ class GenotypeNetwork(object):
             self.G.add_node(seq)
 
         for seq1, seq2 in combinations(self.seq, 2):
-            if distance(self.seq[seq1], self.seq[seq2]) == 1:
+            if distance(str(self.seq[seq1]), str(self.seq[seq2])) == 1:
                 self.G.add_edge(seq1, seq2)
 
 
