@@ -8,11 +8,11 @@ GC.read_graphs()
 GC.combine_graphs()
 GC.write_combined_graph()
 
-# def test_read_graphs():
-# 	"""
-# 	Checks that GC.read_graphs reads correct number of graphs
-# 	"""
-# 	assert len(GC.subgraphs) == 3
+def test_read_graphs():
+	"""
+	Checks that GC.read_graphs reads correct number of graphs
+	"""
+	assert len(GC.subgraphs) == 3
 
 # def test_combine_graphs():
 # 	"""
