@@ -47,8 +47,21 @@ class GenotypeNetwork(object):
             self.G.add_node(seq)
 
         for seq1, seq2 in combinations(self.sequences.keys(), 2):
-            if distance(str(self.sequences[seq1].seq), str(self.sequences[seq2].seq)) == 1:
+            if distance(str(self.sequences[seq1].seq), 
+            	str(self.sequences[seq2].seq)) == 1:
                 self.G.add_edge(seq1, seq2)
 
 
         # nx.draw_networkx(self.G, with_labels=True)
+
+    def write_genotype_network(self, handle):
+    	"""
+    	Writes the genotype network to disk.
+
+    	Parameters:
+    	===========
+    	- handle	(str) the file name, including path, to save the genotype 
+    				network to
+    	"""
+
+    	nx.write_gpickle(self.G, handle)
