@@ -1,18 +1,18 @@
-import graph_combiner as gc
-import os 
-import pickle as pkl
+# import graph_combiner as gc
+# import os 
+# import pickle as pkl
 
-directory = ('Test')
-GC = gc.GraphCombiner(directory)
-GC.read_graphs()
-GC.combine_graphs()
-GC.write_combined_graph()
+# directory = ('Test')
+# GC = gc.GraphCombiner(directory)
+# GC.read_graphs()
+# GC.combine_graphs()
+# GC.write_combined_graph()
 
-def test_read_graphs():
-	"""
-	Checks that GC.read_graphs reads correct number of graphs
-	"""
-	assert len(GC.subgraphs) == 3
+# def test_read_graphs():
+# 	"""
+# 	Checks that GC.read_graphs reads correct number of graphs
+# 	"""
+# 	assert len(GC.subgraphs) == 3
 
 # def test_combine_graphs():
 # 	"""

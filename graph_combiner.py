@@ -21,8 +21,8 @@ class GraphCombiner(object):
 		Reads the present in the directory into the list of graphs.
 		"""
 		for f in os.listdir(self.directory):
-			if f.split('.')[-1] == 'pkl':
-				subgraph = nx.read_gpickle(f)
+			if f.split('.')[-1] == 'pkllist':
+				subgraph = nx.read_gpickle('{0}/{1}'.format(self.directory, f))
 				self.subgraphs.append(subgraph)
 
 	def combine_graphs(self):
