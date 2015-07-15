@@ -51,4 +51,4 @@ class GenotypeNetwork(object):
                 self.G.add_edge(seq1, seq2)
 
 
-        nx.draw_networkx(self.G, with_labels=True)
+        # nx.draw_networkx(self.G, with_labels=True)
