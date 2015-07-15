@@ -8,9 +8,6 @@
 # GC.combine_graphs()
 # GC.write_combined_graph()
 
-# assert 'Test' in os.listdir(os.getcwd()), 'Test directory that stores test data'
-# assert 'pickled_lists' in os.listdir(os.getcwd()), 'pickled_lists that will be combined'
-
 # def test_read_graphs():
 # 	"""
 # 	Checks that GC.read_graphs reads correct number of graphs

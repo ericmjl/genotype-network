@@ -21,15 +21,15 @@ class GraphCombiner(object):
 		Reads the present in the directory into the list of graphs.
 		"""
 		for f in os.listdir(self.directory):
-			if f.split('.')[-1] == 'pkl':
-				subg = nx.read_gpickle(f)
-				self.subgraphs.append(subg)
+			if f.split('.')[-1] == 'pkllist':
+				subgraph = nx.read_gpickle('{0}/{1}'.format(self.directory, f))
+				self.subgraphs.append(subgraph)
 
 	def combine_graphs(self):
 		"""
 		Combines the subgraphs into a single graph. 
 		"""
-		for g in subgraphs:
+		for g in self.subgraphs:
 			self.G.add_edges_from(g.edges())
 
 	def write_combined_graph(self):
