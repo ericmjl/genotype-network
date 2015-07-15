@@ -22,8 +22,8 @@ class GraphCombiner(object):
 		"""
 		for f in os.listdir(self.directory):
 			if f.split('.')[-1] == 'pkl':
-				subg = nx.read_gpickle(f)
-				self.subgraphs.append(subg)
+				subgraph = nx.read_gpickle(f)
+				self.subgraphs.append(subgraph)
 
 	def combine_graphs(self):
 		"""
