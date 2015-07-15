@@ -9,11 +9,11 @@ class GenotypeNetwork(object):
     def __init__(self):
         super(GenotypeNetwork, self).__init__()
         self.G = nx.Graph()
-        self.seq = dict()
+        self.sequences = dict()
 
     def read_sequences(self, filename):
         """
-        Reads in a sequence of type FASTA, assigns it to self.seq as a
+        Reads in a sequence of type FASTA, assigns it to self.sequences as a
         dictionary
         - Dictionary Keys: Accession number
         - Dictionary Values: SeqRecords
@@ -26,7 +26,7 @@ class GenotypeNetwork(object):
         ========
         None
         """
-        self.seq = SeqIO.to_dict(SeqIO.parse(filename, 'fasta'))
+        self.sequences = SeqIO.to_dict(SeqIO.parse(filename, 'fasta'))
 
     def generate_genotype_network(self):
         """
@@ -43,11 +43,11 @@ class GenotypeNetwork(object):
         ========
         None
         """
-        for seq in self.seq:  # Adds a node for each sequence
+        for seq in self.sequences:  # Adds a node for each sequence
             self.G.add_node(seq)
 
-        for seq1, seq2 in combinations(self.seq, 2):
-            if distance(str(self.seq[seq1]), str(self.seq[seq2])) == 1:
+        for seq1, seq2 in combinations(self.sequences, 2):
+            if distance(str(self.sequences[seq1]), str(self.sequences[seq2])) == 1:
                 self.G.add_edge(seq1, seq2)
 
 
