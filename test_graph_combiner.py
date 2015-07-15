@@ -1,12 +1,12 @@
-# import graph_combiner as gc
-# import os 
-# import pickle as pkl
+import graph_combiner as gc
+import os 
+import pickle as pkl
 
-# directory = ('Test')
-# GC = gc.GraphCombiner(directory)
-# GC.read_graphs()
-# GC.combine_graphs()
-# GC.write_combined_graph()
+directory = ('Test')
+GC = gc.GraphCombiner(directory)
+GC.read_graphs()
+GC.combine_graphs()
+GC.write_combined_graph()
 
 # assert 'Test' in os.listdir(os.getcwd()), 'Test directory that stores test data'
 # assert 'pickled_lists' in os.listdir(os.getcwd()), 'pickled_lists that will be combined'

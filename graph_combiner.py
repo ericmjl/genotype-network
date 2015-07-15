@@ -29,7 +29,7 @@ class GraphCombiner(object):
 		"""
 		Combines the subgraphs into a single graph. 
 		"""
-		for g in subgraphs:
+		for g in self.subgraphs:
 			self.G.add_edges_from(g.edges())
 
 	def write_combined_graph(self):
