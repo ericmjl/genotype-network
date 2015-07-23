@@ -62,3 +62,14 @@ class GenotypeNetwork(object):
         """
 
         nx.write_gpickle(self.G, handle)
+
+    def read_genotype_network(self, handle):
+    	"""
+    	Reads a previously constructed genotype network.
+
+    	Parameters:
+    	===========
+    	- handle    (str) the file name, including path, to read the genotype network from.
+    	"""
+
+    	self.G = nx.read_gpickle(handle)
