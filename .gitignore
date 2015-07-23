@@ -59,3 +59,7 @@ target/
 
 # Jupyter notebook checkpoints
 .ipynb_checkpoints/
+
+# Sublime project & workspaces
+.sublime-project
+.sublime-workspace
