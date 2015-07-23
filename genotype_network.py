@@ -73,4 +73,7 @@ class GenotypeNetwork(object):
                     network from.
         """
 
-        self.G = nx.read_gpickle(handle)
+        g = nx.read_gpickle(handle)
+        # check that this is a NetworkX undirected graph.
+        assert isinstance(g, nx.Graph), "The file is not a NetworkX graph"
+        self.G = g
