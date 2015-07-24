@@ -30,6 +30,7 @@ install:
   - source activate test-environment
   - pip install python-Levenshtein
   - conda install pep8
+  - conda install coverage
 
   # Debugging
   - which python
