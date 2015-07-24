@@ -29,3 +29,10 @@ def test_write_genotype_network():
     """
 
     assert 'Demo_052715.pkl' in os.listdir('Test')
+
+def test_read_genotype_network():
+    """
+    Checks that the genotype network is being loaded correctly
+    """
+    
+    assert nx.read_gpickle(handle) == pickle.load(handle)
