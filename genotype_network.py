@@ -2,7 +2,7 @@ from Bio import SeqIO
 import networkx as nx
 from Levenshtein import distance
 from itertools import combinations
-
+$ autopep8 --in-place --aggressive --aggressive genotype_network.py
 
 class GenotypeNetwork(object):
     """docstring for GenotypeNetwork"""
