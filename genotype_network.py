@@ -2,7 +2,7 @@ from Bio import SeqIO
 import networkx as nx
 from Levenshtein import distance
 from itertools import combinations
-$ autopep8 --in-place --aggressive --aggressive genotype_network.py
+
 
 class GenotypeNetwork(object):
     """docstring for GenotypeNetwork"""
@@ -64,12 +64,11 @@ class GenotypeNetwork(object):
         nx.write_gpickle(self.G, handle)
 
     def find_network_cycle(self, root):
-    	"""
-    	Finds network cycle with an optional root.
+        """
+        Finds network cycle with an optional root.
 
-    	Parameters:
-    	===========
+        Parameters:
+        ===========
         - root    (str) the amino acid sequence to find a cycle with this root
         """
         return nx.cycle_basis(self.G, root)
-        
