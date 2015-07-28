@@ -5,6 +5,7 @@ GN = gn.GenotypeNetwork()
 GN.read_sequences('Test/Demo_052715.fasta')
 GN.generate_genotype_network()
 GN.write_genotype_network('Test/Demo_052715.pkl')
+GN.read_genotype_network('Test/Demo_052715.pkl')
 
 
 def test_read_sequences_works_correctly():
@@ -35,4 +36,6 @@ def test_read_genotype_network():
     """
     Checks that the genotype network is being loaded correctly
     """
-    assert GN.read_gpickle(handle) == pickle.load(handle)
+
+    G = nx.read_gpickle(handle)
+    assert len(G.nodes) == 3 #The length of the test file
