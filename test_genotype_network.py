@@ -34,8 +34,9 @@ def test_write_genotype_network():
 
 def test_read_genotype_network():
     """
-    Checks that the genotype network is being loaded correctly
+    Checks that the genotype network is being loaded correctly by counting 
+    nodes in a test pkl file.
     """
 
     G = nx.read_gpickle(handle)
-    assert len(G.nodes) == 3 #The length of the test file
+    assert len(G.nodes) == 3  #The length of the test file
