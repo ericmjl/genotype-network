@@ -39,6 +39,6 @@ def test_read_genotype_network():
     nodes in a test pkl file.
     """
 
-    G = nx.read_gpickle(handle)
-    #The length of the test file
+    G = nx.read_gpickle('Test/Demo_052715.pkl')
+    # The length of the test file
     assert len(G.nodes) == 3
