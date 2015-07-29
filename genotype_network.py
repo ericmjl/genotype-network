@@ -62,3 +62,13 @@ class GenotypeNetwork(object):
         """
 
         nx.write_gpickle(self.G, handle)
+
+    def find_network_cycle(self, root):
+        """
+        Finds network cycle with an optional root.
+
+        Parameters:
+        ===========
+        - root    (str) the amino acid sequence to find a cycle with this root
+        """
+        return nx.cycle_basis(self.G, root)
