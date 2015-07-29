@@ -1,5 +1,6 @@
 import genotype_network as gn
 import os
+import networkx as nx
 
 GN = gn.GenotypeNetwork()
 GN.read_sequences('Test/Demo_052715.fasta')
@@ -34,9 +35,10 @@ def test_write_genotype_network():
 
 def test_read_genotype_network():
     """
-    Checks that the genotype network is being loaded correctly by counting 
+    Checks that the genotype network is being loaded correctly by counting
     nodes in a test pkl file.
     """
 
     G = nx.read_gpickle(handle)
-    assert len(G.nodes) == 3  #The length of the test file
+    #The length of the test file
+    assert len(G.nodes) == 3
