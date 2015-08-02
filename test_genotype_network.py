@@ -1,10 +1,12 @@
 import genotype_network as gn
 import os
+import networkx as nx
 
 GN = gn.GenotypeNetwork()
 GN.read_sequences('Test/Demo_052715.fasta')
 GN.generate_genotype_network()
 GN.write_genotype_network('Test/Demo_052715.pkl')
+GN.read_genotype_network('Test/Demo_052715.pkl')
 
 
 def test_read_sequences_works_correctly():
@@ -29,3 +31,14 @@ def test_write_genotype_network():
     """
 
     assert 'Demo_052715.pkl' in os.listdir('Test')
+
+
+def test_read_genotype_network():
+    """
+    Checks that the genotype network is being loaded correctly by counting
+    nodes in a test pkl file.
+    """
+
+    G = nx.read_gpickle('Test/Demo_052715.pkl')
+    # The length of the test file
+    assert len(G.nodes()) == 3

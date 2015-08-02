@@ -72,3 +72,20 @@ class GenotypeNetwork(object):
         - root    (str) the amino acid sequence to find a cycle with this root
         """
         return nx.cycle_basis(self.G, root)
+
+    def read_genotype_network(self, handle):
+        """
+        Reads a previously constructed genotype network.
+
+        Parameters:
+        ===========
+        - handle    (str) the file name, including path, to read the genotype
+                    network from.
+        """
+
+        g = nx.read_gpickle(handle)
+        # check that this is a NetworkX undirected graph.
+        assert isinstance(g, nx.Graph), "The file is not a NetworkX graph"
+        self.G = g
+
+        
