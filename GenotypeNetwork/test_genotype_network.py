@@ -34,7 +34,7 @@ def test_write_genotype_network():
     Checks that the pickled network is written to disk.
     """
 
-    assert 'Demo_052715.pkl' in os.listdir('Test')
+    assert 'Demo_052715.pkl' in os.listdir('test')
 
 
 def test_read_genotype_network():
@@ -43,6 +43,6 @@ def test_read_genotype_network():
     nodes in a test pkl file.
     """
 
-    G = nx.read_gpickle('Test/Demo_052715.pkl')
+    G = nx.read_gpickle('test/Demo_052715.pkl')
     # The length of the test file
     assert len(G.nodes()) == 3
