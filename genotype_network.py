@@ -5,7 +5,9 @@ from itertools import combinations
 
 
 class GenotypeNetwork(object):
+
     """docstring for GenotypeNetwork"""
+
     def __init__(self):
         super(GenotypeNetwork, self).__init__()
         self.G = nx.Graph()
@@ -87,5 +89,3 @@ class GenotypeNetwork(object):
         # check that this is a NetworkX undirected graph.
         assert isinstance(g, nx.Graph), "The file is not a NetworkX graph"
         self.G = g
-
-        
