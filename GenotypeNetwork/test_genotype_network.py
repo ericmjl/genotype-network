@@ -1,12 +1,12 @@
-import genotype_network as gn
+from GenotypeNetwork import GenotypeNetwork as gn
 import os
 import networkx as nx
 
 GN = gn.GenotypeNetwork()
-GN.read_sequences('Test/Demo_052715.fasta')
+GN.read_sequences('test/Demo_052715.fasta')
 GN.generate_genotype_network()
-GN.write_genotype_network('Test/Demo_052715.pkl')
-GN.read_genotype_network('Test/Demo_052715.pkl')
+GN.write_genotype_network('test/Demo_052715.pkl')
+GN.read_genotype_network('test/Demo_052715.pkl')
 
 
 def test_read_sequences_works_correctly():
