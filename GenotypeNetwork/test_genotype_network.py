@@ -2,6 +2,10 @@ import GenotypeNetwork as gn
 import os
 import networkx as nx
 
+# Change cwd for tests to the current path.
+here = os.path.dirname(os.path.realpath(__file__))
+os.chdir(here)
+
 GN = gn.GenotypeNetwork()
 GN.read_sequences('test/Demo_052715.fasta')
 GN.generate_genotype_network()
