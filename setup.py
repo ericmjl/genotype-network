@@ -24,7 +24,8 @@ setup(
     # https://packaging.python.org/en/latest/single_source_version.html
     version='0.1.0',
 
-    description='A package for constructing and analyzing protein genotype networks in Python',
+    description='A package for constructing and analyzing protein genotype \
+                 networks in Python',
     long_description=long_description,
 
     # The project's main homepage.
@@ -65,7 +66,12 @@ setup(
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
-    packages=find_packages(exclude=['contrib', 'docs', 'test*', '__pycache__']),
+    packages=find_packages(
+    exclude=[
+        'contrib',
+        'docs',
+        'test*',
+         '__pycache__']),
 
     # List run-time dependencies here.  These will be installed by pip when
     # your project is installed. For an analysis of "install_requires" vs pip's
