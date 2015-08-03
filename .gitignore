@@ -63,3 +63,6 @@ target/
 # Sublime project & workspaces
 .sublime-project
 .sublime-workspace
+
+# Test Pickles
+*.pkl
