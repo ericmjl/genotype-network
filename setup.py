@@ -25,8 +25,8 @@ setup(
     version='0.1.0',
 
     description='A package for constructing and analyzing protein genotype \
-                 networks in Python',
-    long_description=long_description,
+                 networks in Python.',
+    long_description=description,
 
     # The project's main homepage.
     url='https://github.com/ericmjl/genotype-network',
