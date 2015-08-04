@@ -34,7 +34,8 @@ script:
   # Your test script goes here
   - py.test
   - pep8 *.py
+  - 
   # Uninstall the local copy
-  - pip uninstall GenotypeNetwork
+  - pip uninstall genotype-network
   # Install the PyPi copy, check for errors.
   - pip install GenotypeNetwork
