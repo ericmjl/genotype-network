@@ -34,3 +34,6 @@ script:
   # Your test script goes here
   - py.test
   - pep8 *.py
+  # Test uninstalling local and installing PyPI distribution.
+  - pip uninstall --yes GenotypeNetwork
+  - pip install GenotypeNetwork
