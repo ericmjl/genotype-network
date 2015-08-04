@@ -1,12 +1,16 @@
-import genotype_network as gn
+import GenotypeNetwork as gn
 import os
 import networkx as nx
 
+# Change cwd for tests to the current path.
+here = os.path.dirname(os.path.realpath(__file__))
+os.chdir(here)
+
 GN = gn.GenotypeNetwork()
-GN.read_sequences('Test/Demo_052715.fasta')
+GN.read_sequences('test/Demo_052715.fasta')
 GN.generate_genotype_network()
-GN.write_genotype_network('Test/Demo_052715.pkl')
-GN.read_genotype_network('Test/Demo_052715.pkl')
+GN.write_genotype_network('test/Demo_052715.pkl')
+GN.read_genotype_network('test/Demo_052715.pkl')
 
 
 def test_read_sequences_works_correctly():
@@ -30,7 +34,7 @@ def test_write_genotype_network():
     Checks that the pickled network is written to disk.
     """
 
-    assert 'Demo_052715.pkl' in os.listdir('Test')
+    assert 'Demo_052715.pkl' in os.listdir('test')
 
 
 def test_read_genotype_network():
@@ -39,6 +43,6 @@ def test_read_genotype_network():
     nodes in a test pkl file.
     """
 
-    G = nx.read_gpickle('Test/Demo_052715.pkl')
+    G = nx.read_gpickle('test/Demo_052715.pkl')
     # The length of the test file
     assert len(G.nodes()) == 3
