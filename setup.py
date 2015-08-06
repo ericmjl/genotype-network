@@ -25,7 +25,7 @@ setup(
     version='0.1.3',
 
     description='A package for constructing and analyzing protein genotype \
-                 networks in Python',
+                 networks in Python.',
     long_description=long_description,
 
     # The project's main homepage.
