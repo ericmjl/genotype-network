@@ -1,4 +1,4 @@
-import GenotypeNetwork as gn
+from GenotypeNetwork import GenotypeNetwork as gn
 import os
 import networkx as nx
 
