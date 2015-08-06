@@ -2,7 +2,7 @@ from Bio import SeqIO
 import networkx as nx
 from Levenshtein import distance
 from itertools import combinations
-
+from scipy.misc import comb
 
 class GenotypeNetwork(object):
 
@@ -48,7 +48,10 @@ class GenotypeNetwork(object):
         for seq in self.sequences.keys():  # Adds a node for each sequence
             self.G.add_node(seq)
 
-        for seq1, seq2 in combinations(self.sequences.keys(), 2):
+        # Compute the total number of comparisons to make.
+        total = comb(len(self.sequences.keys()), 2)
+        for i, (seq1, seq2) in enumerate(combinations(self.sequences.keys(), 2)):
+            print("{0} of {1} combinations".format(i, total))
             if distance(str(self.sequences[seq1].seq),
                         str(self.sequences[seq2].seq)) == 1:
                 self.G.add_edge(seq1, seq2)
