@@ -4,12 +4,12 @@ from Levenshtein import distance
 from itertools import combinations
 from scipy.misc import comb
 
-class GenotypeNetwork(object):
+class ProteinGN(object):
 
-    """docstring for GenotypeNetwork"""
+    """docstring for ProteinGN"""
 
     def __init__(self):
-        super(GenotypeNetwork, self).__init__()
+        super(ProteinGN, self).__init__()
         self.G = nx.Graph()
         self.sequences = dict()
 

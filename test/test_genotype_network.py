@@ -1,4 +1,4 @@
-import GenotypeNetwork as gn
+from genotype_network.protein import ProteinGN
 import os
 import networkx as nx
 
@@ -6,7 +6,7 @@ import networkx as nx
 here = os.path.dirname(os.path.realpath(__file__))
 os.chdir(here)
 
-GN = gn.GenotypeNetwork()
+GN = ProteinGN()
 GN.read_sequences('test_data/Demo_052715.fasta')
 GN.generate_genotype_network()
 GN.write_genotype_network('test_data/Demo_052715.pkl')
