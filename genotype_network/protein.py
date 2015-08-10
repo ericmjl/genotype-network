@@ -89,6 +89,29 @@ class ProteinGN(object):
         """
 
         g = nx.read_gpickle(handle)
-        # check that this is a NetworkX undirected graph.
+        # Checks that this is a NetworkX undirected graph.
         assert isinstance(g, nx.Graph), "The file is not a NetworkX graph"
         self.G = g
+
+    def find_polymorphism(self, pos, letter):
+        """
+        Reads the genotype network and returns a list of nodes at position 
+        pos and letter letter.
+
+        Parameters:
+        ===========
+        - pos   (str) the amino acid position, user input
+
+        - letter   (str) the amino acid name, user input
+        """
+       
+        # Checks that this is a NetworkX undirected graph.
+        assert isinstance(G, nx.Graph), "The file is not a NetworkX graph"
+        poly_nodes = []
+        # Iterates through all nodes and returns a list of sequences that
+        # match with user inputs
+        for n in G.nodes():
+        	node = n
+        	if node[pos] == letter:
+        		poly_nodes.append(node)
+        return poly_nodes
