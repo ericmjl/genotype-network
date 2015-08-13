@@ -4,6 +4,7 @@ from Levenshtein import distance
 from itertools import combinations
 from scipy.misc import comb
 
+
 class ProteinGN(object):
 
     """docstring for ProteinGN"""
@@ -50,7 +51,9 @@ class ProteinGN(object):
 
         # Compute the total number of comparisons to make.
         total = comb(len(self.sequences.keys()), 2)
-        for i, (seq1, seq2) in enumerate(combinations(self.sequences.keys(), 2)):
+        for i, (seq1, seq2) in enumerate(
+                combinations(self.sequences.keys(), 2)):
+
             print("{0} of {1} combinations".format(i, total))
             if distance(str(self.sequences[seq1].seq),
                         str(self.sequences[seq2].seq)) == 1:
