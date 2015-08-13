@@ -32,8 +32,8 @@ install:
 
 script:
   # Your test script goes here
-  - py.test
-  - pep8 *.py
+  - py.test --cov-report term-missing --cov genotype_network
+  - pep8
   
   # Test uninstalling local and installing PyPI distribution.
   - pip uninstall --yes genotype_network
