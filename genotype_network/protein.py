@@ -1,4 +1,5 @@
 from Bio import SeqIO
+from Bio.Alphabet import generic_protein
 import networkx as nx
 from Levenshtein import distance
 from itertools import combinations
@@ -15,13 +16,17 @@ class ProteinGN(object):
 
     @property
     def nodes(self):
-        return self.G.nodes()
+        return self.G.nodes(data=True)
+
+    @property
+    def edges(self):
+        return self.G.edges(data=True)
 
     def generate_genotype_network(self, handle):
         """
         Generates a network of genotypes that are 1 AA apart based on
         information from the dictionary.
-        - Nodes: amino acid sequence.
+        - Nodes: (str) amino acid sequence.
         - Edges: indicate that two sequences are 1 AA apart
 
         Parameters:
@@ -32,23 +37,30 @@ class ProteinGN(object):
         ========
         None
         """
-        sequences = SeqIO.to_dict(SeqIO.parse(handle, 'fasta'))
+        # Note: Alphabet is specified, so that the protein genotype network is
+        # correctly constructed on a set of protein sequences, not nucleotides.
+        sequences = SeqIO.to_dict(SeqIO.parse(handle, 'fasta',
+                                              alphabet=generic_protein))
 
         for accession, sequence in sequences.items():
-            if sequence in self.G.nodes():
-                self.G.node[sequence]['accessions'].add(accession)
+            if str(sequence.seq) in self.nodes:
+                self.G.node[str(sequence.seq)]['accessions'].add(accession)
             else:
-                self.G.add_node(sequence, accessions=set([accession]))
-
+                self.G.add_node(str(sequence.seq), accessions=set([accession]))
         # Compute the total number of comparisons to make.
-        total = comb(len(self.G.nodes()), 2)
+        total = comb(len(self.nodes), 2)
 
-        for i, (seq1, seq2) in enumerate(combinations(self.G.nodes(), 2)):
+        for i, (seq1, seq2) in enumerate(combinations(self.nodes, 2)):
+            # This reassignment is done because Seq1 and Seq2 are themselves
+            # tuples of (node, metadata_dict).
+            seq1 = seq1[0]
+            seq2 = seq2[0]
+
             # Print to screen the current combination being run.
             print("{0} of {1} combinations".format(i, total))
-
-            if distance(str(seq1.seq), str(seq2.seq)) == 1:
-                self.G.add_edge(seq1, seq2)
+            lev_distance = distance(str(seq1), str(seq2))
+            if lev_distance == 1:
+                self.G.add_edge(str(seq1), str(seq2))
 
     def write_genotype_network(self, handle):
         """
