@@ -12,51 +12,42 @@ class ProteinGN(object):
     def __init__(self):
         super(ProteinGN, self).__init__()
         self.G = nx.Graph()
-        self.sequences = dict()
 
-    def read_sequences(self, filename):
-        """
-        Reads in a sequence of type FASTA, assigns it to self.sequences as a
-        dictionary
-        - Dictionary Keys: Accession number
-        - Dictionary Values: SeqRecords
+    @property
+    def nodes(self):
+        return self.G.nodes()
 
-        Parameters:
-        ===========
-        - filename: (str) FASTA file path
-
-        Returns:
-        ========
-        None
-        """
-        self.sequences = SeqIO.to_dict(SeqIO.parse(filename, 'fasta'))
-
-    def generate_genotype_network(self):
+    def generate_genotype_network(self, handle):
         """
         Generates a network of genotypes that are 1 AA apart based on
         information from the dictionary.
-        - Graph nodes: Individual HA sequences
-        - Graph edges: Indicate that two sequences are 1 AA apart
+        - Nodes: amino acid sequence.
+        - Edges: indicate that two sequences are 1 AA apart
 
         Parameters:
         ===========
-        None
+        - handle:    (str) name of the FASTA file that contains the sequences.
 
         Returns:
         ========
         None
         """
-        for seq in self.sequences.keys():  # Adds a node for each sequence
-            self.G.add_node(seq)
+        sequences = SeqIO.to_dict(SeqIO.parse(handle, 'fasta'))
+
+        for accession, sequence in sequences.items():
+            if sequence in self.G.nodes():
+                self.G.node[sequence]['accessions'].add(accession)
+            else:
+                self.G.add_node(sequence, accessions=set([accession]))
 
         # Compute the total number of comparisons to make.
-        total = comb(len(self.sequences.keys()), 2)
-        for i, (seq1, seq2) in enumerate(
-                combinations(self.sequences.keys(), 2)):
+        total = comb(len(self.G.nodes()), 2)
 
+        for i, (seq1, seq2) in enumerate(combinations(self.G.nodes(), 2)):
+            # Print to screen the current combination being run.
             print("{0} of {1} combinations".format(i, total))
-            if distance(str(self.sequences[seq1].seq),
-                        str(self.sequences[seq2].seq)) == 1:
+
+            if distance(str(seq1.seq), str(seq2.seq)) == 1:
                 self.G.add_edge(seq1, seq2)
 
     def write_genotype_network(self, handle):
