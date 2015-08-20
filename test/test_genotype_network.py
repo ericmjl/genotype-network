@@ -23,6 +23,7 @@ def test_read_sequences_works_correctly():
         if len(d['accessions']) == 2:
             assert 'human_h1n1_mut3_same_as_mut1' in d['accessions']
 
+
 def test_generate_genotype_network():
     """
     Checks that the number of nodes equals the number of sequences
@@ -37,6 +38,7 @@ def test_write_genotype_network():
     """
 
     assert 'Demo_052715.pkl' in os.listdir('test_data')
+
 
 def test_read_genotype_network():
     """
