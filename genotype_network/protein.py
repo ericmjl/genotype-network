@@ -22,7 +22,7 @@ class ProteinGN(object):
     def edges(self):
         return self.G.edges(data=True)
 
-    def generate_genotype_network(self, handle):
+    def generate_genotype_network(self, handle, verbose=False):
         """
         Generates a network of genotypes that are 1 AA apart based on
         information from the dictionary.
@@ -57,7 +57,8 @@ class ProteinGN(object):
             seq2 = seq2[0]
 
             # Print to screen the current combination being run.
-            print("{0} of {1} combinations".format(i, total))
+            if verbose:
+                print("{0} of {1} combinations".format(i, total))
             lev_distance = distance(str(seq1), str(seq2))
             if lev_distance == 1:
                 self.G.add_edge(str(seq1), str(seq2))
