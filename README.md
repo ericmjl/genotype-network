@@ -4,6 +4,8 @@ Genotype Networks were defined in a paper by Wagner (2014)[http://rspb.royalsoci
 
 This Python package is written to provide Pythonistas a way to construct and analyze protein genotype networks. Everything here is currently experimental, we would welcome pull requests and suggestions on how to make it more useful!
 
+Documentation is being developed. Please stay tuned!
+
 # Contributor List
 
 - @Chevelant (Kyle Yuan, MIT)

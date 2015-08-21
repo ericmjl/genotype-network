@@ -1,4 +1,5 @@
 from Bio import SeqIO
+from Bio.Alphabet import generic_protein
 import networkx as nx
 from Levenshtein import distance
 from itertools import combinations
@@ -12,52 +13,55 @@ class ProteinGN(object):
     def __init__(self):
         super(ProteinGN, self).__init__()
         self.G = nx.Graph()
-        self.sequences = dict()
 
-    def read_sequences(self, filename):
-        """
-        Reads in a sequence of type FASTA, assigns it to self.sequences as a
-        dictionary
-        - Dictionary Keys: Accession number
-        - Dictionary Values: SeqRecords
+    @property
+    def nodes(self):
+        return self.G.nodes(data=True)
 
-        Parameters:
-        ===========
-        - filename: (str) FASTA file path
+    @property
+    def edges(self):
+        return self.G.edges(data=True)
 
-        Returns:
-        ========
-        None
-        """
-        self.sequences = SeqIO.to_dict(SeqIO.parse(filename, 'fasta'))
-
-    def generate_genotype_network(self):
+    def generate_genotype_network(self, handle, verbose=False):
         """
         Generates a network of genotypes that are 1 AA apart based on
         information from the dictionary.
-        - Graph nodes: Individual HA sequences
-        - Graph edges: Indicate that two sequences are 1 AA apart
+        - Nodes: (str) amino acid sequence.
+        - Edges: indicate that two sequences are 1 AA apart
 
         Parameters:
         ===========
-        None
+        - handle:    (str) name of the FASTA file that contains the sequences.
 
         Returns:
         ========
         None
         """
-        for seq in self.sequences.keys():  # Adds a node for each sequence
-            self.G.add_node(seq)
+        # Note: Alphabet is specified, so that the protein genotype network is
+        # correctly constructed on a set of protein sequences, not nucleotides.
+        sequences = SeqIO.to_dict(SeqIO.parse(handle, 'fasta',
+                                              alphabet=generic_protein))
 
+        for accession, sequence in sequences.items():
+            if str(sequence.seq) in self.nodes:
+                self.G.node[str(sequence.seq)]['accessions'].add(accession)
+            else:
+                self.G.add_node(str(sequence.seq), accessions=set([accession]))
         # Compute the total number of comparisons to make.
-        total = comb(len(self.sequences.keys()), 2)
-        for i, (seq1, seq2) in enumerate(
-                combinations(self.sequences.keys(), 2)):
+        total = comb(len(self.nodes), 2)
 
-            print("{0} of {1} combinations".format(i, total))
-            if distance(str(self.sequences[seq1].seq),
-                        str(self.sequences[seq2].seq)) == 1:
-                self.G.add_edge(seq1, seq2)
+        for i, (seq1, seq2) in enumerate(combinations(self.nodes, 2)):
+            # This reassignment is done because Seq1 and Seq2 are themselves
+            # tuples of (node, metadata_dict).
+            seq1 = seq1[0]
+            seq2 = seq2[0]
+
+            # Print to screen the current combination being run.
+            if verbose:
+                print("{0} of {1} combinations".format(i, total))
+            lev_distance = distance(str(seq1), str(seq2))
+            if lev_distance == 1:
+                self.G.add_edge(str(seq1), str(seq2))
 
     def write_genotype_network(self, handle):
         """
